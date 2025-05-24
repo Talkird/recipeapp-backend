@@ -11,5 +11,6 @@ public interface CalificacionRepository extends JpaRepository<Calificacion, Long
     List<Calificacion> findByReceta(Receta receta);
     List<Calificacion> findByUsuario(Usuario usuario);
     Optional<Calificacion> findByUsuarioAndReceta(Usuario usuario, Receta receta);
+    void deleteById(Long id);
 }
 
