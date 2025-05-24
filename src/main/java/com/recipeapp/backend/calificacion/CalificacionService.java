@@ -14,31 +14,31 @@ public class CalificacionService {
 
     private final CalificacionRepository calificacionRepository;
 
-    public List<Calificacion> obtenerTodas() {
+    public List<Calificacion> getAllRatings() {
         return calificacionRepository.findAll();
     }
 
-    public List<Calificacion> obtenerPorReceta(Receta receta) {
-        return calificacionRepository.findByReceta(receta);
+    public List<Calificacion> getRatingsByRecipe(Receta recipe) {
+        return calificacionRepository.findByReceta(recipe);
     }
 
-    public List<Calificacion> obtenerPorUsuario(Usuario usuario) {
-        return calificacionRepository.findByUsuario(usuario);
+    public List<Calificacion> getRatingsByUser(Usuario user) {
+        return calificacionRepository.findByUsuario(user);
     }
 
-    public Optional<Calificacion> obtenerPorUsuarioYReceta(Usuario usuario, Receta receta) {
-        return calificacionRepository.findByUsuarioAndReceta(usuario, receta);
+    public Optional<Calificacion> getRatingByUserAndRecipe(Usuario user, Receta recipe) {
+        return calificacionRepository.findByUsuarioAndReceta(user, recipe);
     }
 
-    public Calificacion guardar(Calificacion calificacion) {
-        return calificacionRepository.save(calificacion);
+    public Calificacion saveRating(Calificacion rating) {
+        return calificacionRepository.save(rating);
     }
 
-    public void eliminar(Long id) {
+    public void deleteRating(Long id) {
         calificacionRepository.deleteById(id);
     }
 
-    public Calificacion actualizarCalificacion(Long id, Calificacion calificacion) {
+    public Calificacion updateRating(Long id, Calificacion calificacion) {
         Calificacion calificacionExistente = calificacionRepository.findById(id).orElseThrow(() -> new RuntimeException("Calificación no encontrada"));
         calificacionExistente.setCalificacion(calificacion.getCalificacion());
         calificacionExistente.setComentarios(calificacion.getComentarios());

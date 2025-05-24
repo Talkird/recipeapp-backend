@@ -1,5 +1,6 @@
 package com.recipeapp.backend.calificacion;
 
+
 import com.recipeapp.backend.receta.Receta;
 import com.recipeapp.backend.receta.RecetaRepository;
 import com.recipeapp.backend.usuario.Usuario;
@@ -11,46 +12,46 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/calificaciones")
+@RequestMapping("/ratings")
 @RequiredArgsConstructor
 public class CalificacionController {
 
-    private final CalificacionService calificacionService;
-    private final UsuarioRepository usuarioRepository;
-    private final RecetaRepository recetaRepository;
+    private final CalificacionService ratingService;
+    private final UsuarioRepository userRepository;
+    private final RecetaRepository recipeRepository;
 
     @GetMapping
-    public List<Calificacion> listarTodas() {
-        return calificacionService.obtenerTodas();
+    public List<Calificacion> getAllRatings() {
+        return ratingService.getAllRatings();
     }
 
-    @GetMapping("/receta/{idReceta}")
-    public ResponseEntity<List<Calificacion>> listarPorReceta(@PathVariable Long idReceta) {
-        return recetaRepository.findById(idReceta)
-                .map(receta -> ResponseEntity.ok(calificacionService.obtenerPorReceta(receta)))
+    @GetMapping("/recipe/{recipeId}")
+    public ResponseEntity<List<Calificacion>> getRatingsByRecipe(@PathVariable Long recipeId) {
+        return recipeRepository.findById(recipeId)
+                .map(recipe -> ResponseEntity.ok(ratingService.getRatingsByRecipe(recipe)))
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @GetMapping("/usuario/{idUsuario}")
-    public ResponseEntity<List<Calificacion>> listarPorUsuario(@PathVariable Long idUsuario) {
-        return usuarioRepository.findById(idUsuario)
-                .map(usuario -> ResponseEntity.ok(calificacionService.obtenerPorUsuario(usuario)))
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<Calificacion>> getRatingsByUser(@PathVariable Long userId) {
+        return userRepository.findById(userId)
+                .map(user -> ResponseEntity.ok(ratingService.getRatingsByUser(user)))
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public ResponseEntity<Calificacion> crearCalificacion(@RequestBody Calificacion calificacion) {
-        return ResponseEntity.ok(calificacionService.guardar(calificacion));
+    public ResponseEntity<Calificacion> createRating(@RequestBody Calificacion rating) {
+        return ResponseEntity.ok(ratingService.saveRating(rating));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminarCalificacion(@PathVariable Long id) {
-        calificacionService.eliminar(id);
+    public ResponseEntity<Void> deleteRating(@PathVariable Long id) {
+        ratingService.deleteRating(id);
         return ResponseEntity.noContent().build();
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Calificacion> actualizarCalificacion(@PathVariable Long id, @RequestBody Calificacion calificacion) {
-        return ResponseEntity.ok(calificacionService.actualizarCalificacion(id, calificacion));
+        return ResponseEntity.ok(ratingService.updateRating(id, calificacion));
     }
 }
