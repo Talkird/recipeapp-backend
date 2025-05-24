@@ -13,7 +13,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/ratings")
-@RequiredArgsConstructor
 public class CalificacionController {
 
     private final CalificacionService ratingService;

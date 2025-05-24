@@ -10,6 +10,7 @@ public class TipoRecetaService {
     
     @Autowired
     private TipoRecetaRepository tipoRecetaRepository;
+    
     public TipoReceta createTipoReceta(TipoReceta tipoReceta) {
         return tipoRecetaRepository.save(tipoReceta);
     }
