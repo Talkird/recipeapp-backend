@@ -1,5 +1,7 @@
 package com.recipeapp.backend.alumno;
 
+import com.recipeapp.backend.asistencia.AsistenciaCurso;
+import com.recipeapp.backend.usuario.Usuario;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,4 +20,12 @@ public class Alumno {
     private String dniFondo;
     private String tramite;
     private String cuentaCorriente;
+
+    @ManyToOne
+    @JoinColumn(name = "idUsuario")
+    private Usuario usuario;
+
+    @ManyToOne
+    @JoinColumn(name = "idAsistenciaCurso")
+    private AsistenciaCurso asistenciaCurso;
 }
