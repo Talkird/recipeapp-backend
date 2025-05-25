@@ -2,6 +2,7 @@ package com.recipeapp.backend.calificacion;
 
 import com.recipeapp.backend.receta.Receta;
 import com.recipeapp.backend.usuario.Usuario;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
