@@ -1,11 +1,14 @@
 package com.recipeapp.backend.paso;
 
 import com.recipeapp.backend.receta.Receta;
+import com.recipeapp.backend.multimedia.Multimedia;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Data
@@ -23,4 +26,6 @@ public class Paso {
     private Integer nroPaso;
     private String texto;
 
+    @OneToMany(mappedBy = "paso")
+    private List<Multimedia> multimedia;
 }
