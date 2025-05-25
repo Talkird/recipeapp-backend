@@ -1,9 +1,6 @@
 package com.recipeapp.backend.calificacion;
 
-
-import com.recipeapp.backend.receta.Receta;
 import com.recipeapp.backend.receta.RecetaRepository;
-import com.recipeapp.backend.usuario.Usuario;
 import com.recipeapp.backend.usuario.UsuarioRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
