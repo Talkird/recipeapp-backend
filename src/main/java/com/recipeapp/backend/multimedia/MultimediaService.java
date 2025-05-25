@@ -26,4 +26,12 @@ public class MultimediaService {
     public void deleteMultimedia(Long id) {
         multimediaRepository.deleteById(id);
     }
+
+    public List<Multimedia> getMultimediaByPasoId(Long idPaso) {
+        return multimediaRepository.findByPasoIdPaso(idPaso);
+    }
+
+    public List<Multimedia> getMultimediaByPasoIdAndTipo(Long idPaso, String tipoContenido) {
+        return multimediaRepository.findByPasoIdPasoAndTipoContenido(idPaso, tipoContenido);
+    }
 }

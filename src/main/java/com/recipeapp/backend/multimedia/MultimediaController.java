@@ -34,4 +34,14 @@ public class MultimediaController {
         multimediaService.deleteMultimedia(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/paso/{idPaso}")
+    public List<Multimedia> getMultimediaByPaso(@PathVariable Long idPaso) {
+        return multimediaService.getMultimediaByPasoId(idPaso);
+    }
+
+    @GetMapping("/paso/{idPaso}/tipo/{tipoContenido}")
+    public List<Multimedia> getMultimediaByPasoAndTipo(@PathVariable Long idPaso, @PathVariable String tipoContenido) {
+        return multimediaService.getMultimediaByPasoIdAndTipo(idPaso, tipoContenido);
+    }
 }

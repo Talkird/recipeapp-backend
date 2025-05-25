@@ -34,4 +34,9 @@ public class PasoController {
         pasoService.deletePaso(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/receta/{idReceta}")
+    public List<Paso> getPasosByReceta(@PathVariable Long idReceta) {
+        return pasoService.getPasosByRecetaId(idReceta);
+    }
 }

@@ -26,4 +26,8 @@ public class PasoService {
     public void deletePaso(Long id) {
         pasoRepository.deleteById(id);
     }
+
+    public List<Paso> getPasosByRecetaId(Long idReceta) {
+        return pasoRepository.findByRecetaIdRecetaOrderByNroPasoAsc(idReceta);
+    }
 }
