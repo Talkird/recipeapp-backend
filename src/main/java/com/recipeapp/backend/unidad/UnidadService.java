@@ -26,4 +26,8 @@ public class UnidadService {
     public void deleteUnidad(Long id) {
         unidadRepository.deleteById(id);
     }
+
+    public boolean existsByDescripcion(String descripcion) {
+        return !unidadRepository.findByDescripcionContainingIgnoreCase(descripcion).isEmpty();
+    }
 }

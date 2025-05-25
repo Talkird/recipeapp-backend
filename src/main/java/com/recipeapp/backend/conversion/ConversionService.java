@@ -1,5 +1,6 @@
 package com.recipeapp.backend.conversion;
 
+import com.recipeapp.backend.unidad.Unidad;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,5 +27,11 @@ public class ConversionService {
 
     public void deleteConversion(Long id) {
         conversionRepository.deleteById(id);
+    }
+
+    public Optional<Double> calculateConversion(Double cantidad, Unidad unidadOrigen, Unidad unidadDestino) {
+        Optional<Conversion> conversion = conversionRepository.findByUnidadOrigenAndUnidadDestino(unidadOrigen,
+                unidadDestino);
+        return conversion.map(c -> cantidad * c.getFactorConversion());
     }
 }

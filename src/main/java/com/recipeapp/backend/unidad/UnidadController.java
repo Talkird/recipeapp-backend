@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/unidades")
@@ -33,5 +34,12 @@ public class UnidadController {
     public ResponseEntity<Void> deleteUnidad(@PathVariable Long id) {
         unidadService.deleteUnidad(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/search")
+    public List<Unidad> searchUnidades(@RequestParam String descripcion) {
+        return unidadService.getAllUnidades().stream()
+                .filter(unidad -> unidad.getDescripcion().toLowerCase().contains(descripcion.toLowerCase()))
+                .collect(Collectors.toList());
     }
 }
