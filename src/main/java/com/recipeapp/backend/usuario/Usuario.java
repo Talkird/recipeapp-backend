@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 import com.recipeapp.backend.receta.Receta;
+import com.recipeapp.backend.alumno.Alumno;
+import com.recipeapp.backend.calificacion.Calificacion;
 
 @Entity
 @Data
@@ -26,4 +28,10 @@ public class Usuario {
 
     @OneToMany(mappedBy = "usuario")
     private List<Receta> recetas;
+
+    @OneToOne(mappedBy = "usuario")
+    private Alumno alumno;
+
+    @OneToMany(mappedBy = "usuario")
+    private List<Calificacion> calificaciones;
 }
